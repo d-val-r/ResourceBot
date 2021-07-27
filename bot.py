@@ -39,6 +39,13 @@ for email in data[0].split():
     # result[0][1] is the body of the email in byte form
     emails.append(result[0][1].decode())
 
+
+    # move emails deleted folder so as not re-process them in the future
+    conn.store(email, '+FLAGS', '\\Deleted')
+
+# delete emails from deleted folder
+conn.expunge()
+
 # the connection to the email is no longer necessary
 conn.close()
 conn.logout()
