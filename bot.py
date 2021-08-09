@@ -14,9 +14,8 @@ conn = imaplib.IMAP4_SSL(host=hostname, ssl_context=context)
 
 conn.login(user, password)
 
-# set readOnly flag to true during testing to avoid 
-# potential corrupting emails
-conn.select("Inbox", readonly=True)
+# set readOnly flag to false to allow for deletion of processed emails 
+conn.select("Inbox", readonly=False)
 
 
 # find all emails from Quincy Larson; the second return 
